@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Action implements ActionInterface {
-	public static Logger log = LoggerHelper.getLogger(BasePage.class);
+	public static Logger log = LoggerHelper.getLogger(Action.class);
 	@Override
 	public void scrollByVisibilityOfElement(WebDriver driver, WebElement ele) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;

@@ -113,7 +113,7 @@ public class E2ESteps extends BasePage {
         searchResultPage.clickOnAddToCartBtn();
     }
     @And("user enters a number in quantity box to increases items by {string} and clicks on remove icon to remove from cart")
-    public void userEntersANumberInQuantityBoxToIncreasesItemsByAndClicksOnRemoveIconToRemoveFromCart(String arg0) throws InterruptedException {
+    public void userEntersANumberInQuantityBoxToIncreasesItemsByAndClicksOnRemoveIconToRemoveFromCart(String arg0) throws Exception {
         checkoutCartPage.validateUserOnShoppingCartPage();
         checkoutCartPage.validateRemoveIconBtnisEnabled();
         checkoutCartPage.enterAddQuantityBox(arg0);

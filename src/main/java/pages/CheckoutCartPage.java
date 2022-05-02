@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class CheckoutCartPage extends BasePage {
     public static Logger log = LoggerHelper.getLogger(CheckoutCartPage.class);
+    AccountLoginPage accountLoginPage = new AccountLoginPage();
     public CheckoutCartPage() throws IOException {
         super();
     }
@@ -74,81 +75,103 @@ public class CheckoutCartPage extends BasePage {
 //==============================================================//
 
     public boolean validateUserOnShoppingCartPage() {
-        return act.isDisplayed(getDriver(), shoppingCartTxt);
+        log.info("The element is Displayed...");
+        return isDisplayed(shoppingCartTxt);
     }
 
-    public void enterCouponNumberOnCouponBox(String CouponNumber) {
-        act.type(couponBox, CouponNumber);
+    public void enterCouponNumberOnCouponBox(String CouponNumber) throws Exception {
+        sendKeysToWebElement(couponBox, CouponNumber);
+        log.info("Sent data to the element: " + CouponNumber);
     }
 
     public void clickOnApplyCouponBtn() {
         waitForWebElementAndClick(applyCouponBtn);
+        log.info("Waited and clicked on the element...");
     }
 
     public void selectEstimateCountryDropdown(String countryName) {
-        act.selectByVisibleText(countryName, estimateCountryDropdown);
+        selectByVisibleText(countryName, estimateCountryDropdown);
+        log.info("Selected visible text :" + countryName);
     }
     public void selectCountryZonesDropdown(String countryZonesName) {
-        act.selectByVisibleText(countryZonesName, countryZonesDropdown) ;
+        selectByVisibleText(countryZonesName, countryZonesDropdown) ;
+        log.info("Selected visible text :" + countryZonesName);
     }
 
     public void enterOnEstimatePostcodeBox(String postCode) throws Exception {
-        act.type(estimatePostcodeBox, postCode);
+        sendKeysToWebElement(estimatePostcodeBox, postCode);
+        log.info("Sent data to the element: " + postCode);
     }
     public void clickOnEstimateCalculatorBtn() {
         waitForWebElementAndClick(estimateCalculatorBtn);
+        log.info("Waited and clicked on the element...");
     }
     public void selectFlatRateShipmentsDropdown(String flatRateShipment) {
-        act.selectByVisibleText(flatRateShipment, FlatRateShipmentsDropdown);
+        log.info("Select text from the DropDown: " + flatRateShipment);
+        selectByVisibleText(flatRateShipment, FlatRateShipmentsDropdown);
     }
     public boolean validateRemoveIconBtnisEnabled() {
-        return act.isEnabled(getDriver(), removeItemBtn);
+        log.info("Element is Enabled...");
+        return isEnabled(getDriver(), removeItemBtn);
     }
     public void clickOnRemoveIconBtn() {
         waitForWebElementAndClick(removeItemBtn);
+        log.info("clicked on the element to remove an items...");
     }
     public void clickOnUpdateBtn() throws InterruptedException {
         waitForWebElementAndClick(updateBtn);
-        Thread.sleep(3000);
+        waitFor(updateBtn);
+        log.info("Waited and clicked on the element to update cart...");
     }
 
     public IndexPage clickOnContinueShippingBtn() throws IOException {
         waitForWebElementAndClick(continueShippingBtn);
+        log.info("Waiting to click on the element...");
+        log.info("Clicked and returning to new Index Page...");
         return new IndexPage();
     }
     public AccountLoginPage clickOnCheckoutBtn() throws IOException, InterruptedException {
         waitForWebElementAndClick(checkoutBtn);
-        Thread.sleep(3000);
+        log.info("Waiting to click on the element...");
+        waitFor(accountLoginPage.loginNameTxtField);
+        log.info("Clicked and returning to new Account LoginPage...");
         return new AccountLoginPage();
     }
-    public void enterAddQuantityBox(String arg1) throws InterruptedException {
-        act.click(getDriver(), addQuantityBox);
-
-        act.type(addQuantityBox, arg1);
+    public void enterAddQuantityBox(String arg1) throws Exception {
+        log.info("Waiting to click on the element...");
+        waitForWebElementAndClick(addQuantityBox);
+        sendKeysToWebElement(addQuantityBox, arg1);
+        log.info("clicked on the element and sent data to: " + arg1);
     }
     public boolean validateYourShoppingCartIsEmptyIsDisplayed() {
         log.info("Your Shopping Cart Is Empty and Displayed...");
-        return act.isDisplayed(getDriver(), yourShoppingCartIsEmptyTxt);
+        return isDisplayed(yourShoppingCartIsEmptyTxt);
     }
 
     public boolean validateProductImageIsDisplayed() {
-        return act.isDisplayed(getDriver(), productImage);
-    }
+        log.info("Your ProductImage is Displayed...");
+        return isDisplayed(productImage);
 
+    }
     public String getProductPrice() {
+        log.info("Getting element text..." + productPrice.getText());
         return productPrice.getText();
-    }
 
+    }
     public String getSubPrice() {
+        log.info("Getting element text..." + subPrice.getText());
         return subPrice.getText();
-    }
 
+    }
     public String getProductTotalPrice() {
+        log.info("Getting element text..." + productTotalPrice.getText());
         return productTotalPrice.getText();
-    }
 
+    }
     public String getProductGrandTotalPrice() {
+        log.info("Getting element text..." + productGrandTotalPrice.getText());
         return productGrandTotalPrice.getText();
+
     }
 
 }

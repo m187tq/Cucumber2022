@@ -54,7 +54,7 @@ public class AccountLoginPage extends BasePage {
     @FindBy(id = "accountFrm_accountguest")
     public WebElement guestCheckoutRadioBtn;
     public boolean validateGuestCheckoutRadioBtnIsEnabled() {
-        return act.isEnabled(getDriver(), guestCheckoutRadioBtn);
+        return isEnabled(getDriver(), guestCheckoutRadioBtn);
     }
 
     // Forget Password Variable declaration //

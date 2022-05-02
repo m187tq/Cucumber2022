@@ -39,7 +39,7 @@ public class AccountSuccessPage extends BasePage {
         return accountHasBeenCreatedHeadingTxt.getText();
     }
     public WebElement congratulationsYourNewAccountHasBeenSuccessfullyCreatedTxt() {
-        act.fluentWait(getDriver(), accountHasBeenCreatedHeadingTxt, globalVars.getExplicitWait());
+        fluentWait(getDriver(), accountHasBeenCreatedHeadingTxt, globalVars.getExplicitWait());
         log.info("Waited and getting element text..." + accountHasBeenCreatedHeadingTxt.getText());
         return congratulationsYourNewAccountHasBeenSuccessfullyCreatedTxt;
     }
@@ -47,7 +47,7 @@ public class AccountSuccessPage extends BasePage {
     public AccountPage clickOnContinueAccountSuccessBtn() throws IOException, InterruptedException {
         waitForWebElementAndClick(continueAccountSuccessBtn);
         log.info("Waiting to click on the element...");
-        log.info("Clicked and returning new IndexPage...");
+        log.info("Clicked and returning new Account Page...");
         return new AccountPage();
     }
 

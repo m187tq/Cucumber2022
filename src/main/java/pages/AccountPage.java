@@ -46,7 +46,7 @@ public class AccountPage extends BasePage {
 
     public boolean isAccountDashboardTxtDisplayed() {
         waitFor(accountDashboardTxt);
-        return act.isDisplayed(getDriver(),accountDashboardTxt);
+        return isDisplayed(getDriver(),accountDashboardTxt);
     }
 
     public AccountLogoutPage clickOnLogoffBtn() throws IOException {

@@ -23,7 +23,6 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class BasePage extends DriverFactory {
-    //public static Logger log = LoggerHelper.getLogger(BasePage.class);
     public static WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(globalVars.explicitWait));
     public static AssertionHelper assertionHelper = new AssertionHelper();
     public static WaitHelper waitHelper = new WaitHelper(getDriver());
@@ -1000,4 +999,10 @@ public class BasePage extends DriverFactory {
 
         }
     }
+    public void explicitWait(WebDriver driver, WebElement element, int timeOut ) {
+        WebDriverWait wait = new WebDriverWait(BasePage.getDriver(),Duration.ofSeconds(globalVars.getExplicitWait()));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+
 }

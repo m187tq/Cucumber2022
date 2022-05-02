@@ -39,7 +39,7 @@ public class AccountLogoutPage extends BasePage {
     }
     public IndexPage clickOnLogoutContinueButton() throws IOException {
         IndexPage indexPage = new IndexPage();
-        act.explicitWait(getDriver(), logoutAccountContinueBtn, globalVars.getDefaultExplicitTimeout());
+        explicitWait(getDriver(), logoutAccountContinueBtn, globalVars.getDefaultExplicitTimeout());
         waitAndClickElement(logoutAccountContinueBtn);
         log.info("Wait ti click on the element...");
         fluentWait(getDriver(), indexPage.logoImage, globalVars.getDefaultExplicitTimeout());
@@ -48,7 +48,7 @@ public class AccountLogoutPage extends BasePage {
 
     }
     public boolean validateLogoutContinueBtnIsDisplayed() {
-        act.explicitWait(getDriver(), logoutAccountContinueBtn, globalVars.getDefaultExplicitTimeout());
+        explicitWait(getDriver(), logoutAccountContinueBtn, globalVars.getDefaultExplicitTimeout());
         log.info("Waiting for element to Displayed..");
         return isDisplayed(getDriver(), logoutAccountContinueBtn);
     }

@@ -4,13 +4,15 @@ import helper.logger.LoggerHelper;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utilities.datarepo;
 
 import java.io.IOException;
 import java.util.List;
 
 public class CheckoutConfirmationPage extends BasePage {
     public static Logger log = LoggerHelper.getLogger(CheckoutConfirmationPage.class);
+    CheckoutCartPage checkoutCartPage = new CheckoutCartPage();
+    PaymentModeEditPage paymentModeEditPage = new  PaymentModeEditPage();
+    CheckoutSuccessPage checkoutSuccessPage = new CheckoutSuccessPage();
     public CheckoutConfirmationPage() throws IOException {
         super();
     }
@@ -94,7 +96,7 @@ public class CheckoutConfirmationPage extends BasePage {
     }
 
     public boolean validateUserOncheckoutConfirmatioPage() {
-        return act.isDisplayed(getDriver(), orderSummaryTxt);
+        return isDisplayed(orderSummaryTxt);
     }
 
     public WebElement getQtyProductWithStockLocations() {
@@ -106,80 +108,96 @@ public class CheckoutConfirmationPage extends BasePage {
     }
 
     public void selectCurrencyDropdownBtn(String currenyName) {
-        act.explicitWait(getDriver(), currencyDropdownBtn, datarepo.getTenSeconds());
-        act.selectByVisibleText(currenyName, currencyDropdownBtn);
+        waitFor(currencyDropdownBtn);
+        selectByVisibleText(currenyName, currencyDropdownBtn);
+        log.info("Selected visible text :" + currenyName);
     }
 
     public CheckoutCartPage clickOnItemsCartIcon() throws IOException {
         waitForWebElementAndClick(itemsCartIcon);
+        log.info("Waiting to click on the element...");
+        waitFor(checkoutCartPage.shoppingCartTxt);
+        log.info("Returning to new CheckoutCartPage");
         return new CheckoutCartPage();
-
     }
 
-    public boolean validateCheckoutConfirmionHeadingTxt() {
-        return act.isDisplayed(getDriver(), checkoutConfirmionHeadingTxt);
+    public boolean validateCheckoutConfirmationHeadingTxt() {
+        log.info("Element are Displayed...");
+        return isDisplayed(checkoutConfirmionHeadingTxt);
 
     }
 
     public boolean validateClickingConfirmOrderReturnPolicyText() {
-        return act.isDisplayed(getDriver(), clickingConfirmOrderReturnPolicyText);
+        log.info("Element are Displayed...");
+        return isDisplayed(getDriver(), clickingConfirmOrderReturnPolicyText);
 
     }
 
     public void clickOnReturnPolicyTxtLink() {
         waitForWebElementAndClick(returnPolicyTxtLink);
+        log.info("Waited and clicked on the element...");
 
     }
-
     public CheckoutShippingModeEditPage clickEditShipmentIcon() throws IOException {
         waitForWebElementAndClick(editShipmentIcon);
+        log.info("Waiting to click on the element...");
+        log.info("Returning to new CheckoutShippingModeEditPage...");
         return new CheckoutShippingModeEditPage();
     }
-
-    public boolean validateShippingTxt() {
-        return act.isDisplayed(getDriver(), shippingTxt);
+    public boolean validateShippingTxtIsDisplayed() {
+        log.info("The element is Displayed as: " + "<" + shippingTxt.getText() + ">");
+        return isDisplayed(shippingTxt);
 
     }
-
-    public WebElement paymentTxt() {
-        return paymentTxt;
+    public String getPaymentTxt() {
+        log.info("Getting element text..." + paymentTxt.getText());
+        return paymentTxt.getText();
 
     }
     public PaymentModeEditPage clickOnEditPaymentIcon() throws IOException {
         waitForWebElementAndClick(editPaymentIcon);
+        log.info("Waiting to click on the element...");
         return new PaymentModeEditPage();
     }
 
     public PaymentModeEditPage clickOnEditCouponIcon() throws IOException {
+        log.info("Waiting to click on the element...");
         waitForWebElementAndClick(editCouponIcon);
+        log.info("Returning to new PaymentModeEditPage");
         return new PaymentModeEditPage();
     }
 
-    public WebElement ItemsInYourCartTxt() {
-        return itemsInYourCartTxt;
+    public String getItemsInYourCartTxt() {
+        log.info("Getting element text..." + itemsInYourCartTxt.getText());
+        return itemsInYourCartTxt.getText();
 
     }
 
     public CheckoutCartPage clickOnEditCartIcon() throws IOException {
         waitForWebElementAndClick(editCartIcon);
+        log.info("Clicked and returning a new PaymentModeEditPage");
         return new CheckoutCartPage();
 
     }
     public String itemsInYourCartTxt() {
+        log.info("Getting element text..." + itemsInYourCart.getText());
         return itemsInYourCart.getText();
     }
 
     public PaymentModeEditPage clickOnBackArrowBtn() throws IOException {
         waitForWebElementAndClick(backArrowBtn);
+        log.info("Clicked and returning a new PaymentModeEditPage");
         return new PaymentModeEditPage();
     }
 
-    public WebElement totalPriceTxt() {
-        return totalPriceTxt;
+    public String gettotalPriceTxt() {
+        log.info("Getting element text..." + totalPriceTxt.getText());
+        return totalPriceTxt.getText();
 
     }
-    public boolean validateAmountTxt() {
-        return act.isDisplayed(getDriver(), amountTxt);
+    public String getAmountTxt() {
+        log.info("Getting element text..." + amountTxt.getText());
+        return amountTxt.getText();
 
     }
 
@@ -199,6 +217,8 @@ public class CheckoutConfirmationPage extends BasePage {
 
     public CheckoutSuccessPage clickOnConfirmOrderBtn() throws Throwable {
         waitAndClickElement(confirmOrderBtn);
+        waitFor(checkoutSuccessPage.OrderNumberText);
+        log.info("Clicked and returning a new CheckoutSuccessPage...");
         return new CheckoutSuccessPage();
     }
 
