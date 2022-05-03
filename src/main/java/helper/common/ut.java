@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -305,7 +306,7 @@ public class ut extends DriverFactory {
      * @return WebElement selektovani element
      */
     public static WebElement waitToBeClickable(WebDriver driver, By selector, int waitInterval) {
-        WebElement element = (new WebDriverWait(driver, waitInterval)).until(ExpectedConditions.elementToBeClickable(selector));
+        WebElement element = (new WebDriverWait(driver, Duration.ofSeconds(10))).until(ExpectedConditions.elementToBeClickable(selector));
         return element;
     }
 
@@ -318,7 +319,7 @@ public class ut extends DriverFactory {
      * @return WebElement selektovani element
      */
     public static WebElement waitForElementPresence(WebDriver driver, By selector, int waitInterval) {
-        WebElement element = (new WebDriverWait(driver, waitInterval)).until(ExpectedConditions.presenceOfElementLocated(selector));
+        WebElement element = (new WebDriverWait(driver, Duration.ofSeconds(10))).until(ExpectedConditions.presenceOfElementLocated(selector));
         return element;
     }
 
@@ -330,7 +331,7 @@ public class ut extends DriverFactory {
      * @param waitInterval - vreme koje ce driver da ceka da se element pojavi u DOM stablu
      */
     public static void waitForTitle(WebDriver driver, String title, int waitInterval) {
-        (new WebDriverWait(driver, waitInterval)).until(ExpectedConditions.titleIs(title));
+        (new WebDriverWait(driver, Duration.ofSeconds(30))).until(ExpectedConditions.titleIs(title));
     }
 
 }

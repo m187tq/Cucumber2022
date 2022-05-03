@@ -31,8 +31,7 @@ public class Action implements ActionInterface {
 	public void click(WebDriver driver, WebElement ele) {
 		Actions act = new Actions(driver);
 		act.moveToElement(ele).click().build().perform();
-		System.out.println("click on \"" + ele.getText() + "\"");
-		log.info("click on \"" +  ele.getText() + "\"");
+		log.info("Here is the problem");
 	}
 
 	@Override

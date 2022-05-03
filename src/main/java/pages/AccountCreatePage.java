@@ -140,19 +140,17 @@ public class AccountCreatePage extends BasePage {
 
     public String createAccountText(String arg0) {
         act.fluentWait(getDriver(),createAccountTxt, globalVars.getDefaultExplicitTimeout());
-        log.info("getting the element text...");
+        log.info("Got the element text: " + createAccountTxt.getText());
         return createAccountTxt.getText();
     }
-
     public String getIfYouAlreadyHaveAnAccountWithUsTxt() {
-        log.info("getting the element text => <ifYouAlreadyHaveAnAccountWithUs>");
+        log.info("Got the element text: " + ifYouAlreadyHaveAnAccountWithUs.getText());
         return getText(ifYouAlreadyHaveAnAccountWithUs);
     }
     public String getYourPersonalDetailsTxt(String arg1) {
-        log.info("getting the element text => <yourPersonalDetailsTxt>");
+        log.info("Got the element text: " + yourPersonalDetailsTxt.getText());
         return getText(yourPersonalDetailsTxt);
     }
-
     public void enterFirstName(String firstname) throws Exception {
         log.info("Entered text :" + firstname);
         sendKeysToWebElement(firstNameTextBox, firstname);
@@ -163,7 +161,6 @@ public class AccountCreatePage extends BasePage {
         sendKeysToWebElement(lastNameTextBox, lastName);
 
     }
-
     public void enterFreshEmailAddress() throws Exception {
         sendKeysToWebElement(emailTextBox, email);
         log.info("Entered text :" + email);
@@ -191,7 +188,7 @@ public class AccountCreatePage extends BasePage {
 
     }
     public String getYourAddressTxt() {
-        log.info("get Your Address Txt...");
+        log.info("Got the element text: " + yourAddressText.getText());
         return getText(yourAddressText);
     }
     public void enterCompanyName(String companyName) throws Exception {
@@ -225,13 +222,13 @@ public class AccountCreatePage extends BasePage {
         log.info("Selected Visible Text :" + countryName);
     }
     public String getloginDetailsSectionText(String arg0) throws IOException {
-        log.info("getting Your Address Txt...");
+        log.info("Got the element text: " + loginDetailsSectionText.getText());
         return getText(loginDetailsSectionText);
     }
 
     public void enterLoginName() throws Exception {
         sendKeysToWebElement(loginNameTextBox, ("Covid" + generateRandomNumber(5)));
-        log.info("Entered generated Random loginName.... ");
+        log.info("Entered generated Random loginName:" + "Covid" + generateRandomNumber(5));
     }
     public void enterPassword(String arg0) throws Exception {
         sendKeysToWebElement(passwordTextBox, arg0);
@@ -243,7 +240,7 @@ public class AccountCreatePage extends BasePage {
     }
 
     public String getNewsletterTxt() throws IOException {
-        log.info("Gotten element Newsletter text...");
+        log.info("Got the element text: " + newsletterText.getText());
         return getText(newsletterText);
 
     }

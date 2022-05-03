@@ -41,7 +41,7 @@ public class AccountLogoutPage extends BasePage {
         IndexPage indexPage = new IndexPage();
         explicitWait(getDriver(), logoutAccountContinueBtn, globalVars.getDefaultExplicitTimeout());
         waitAndClickElement(logoutAccountContinueBtn);
-        log.info("Wait ti click on the element...");
+        log.info("Successfully clicked on the WebElement: " + "<" + logoutAccountContinueBtn.toString() + ">");
         fluentWait(getDriver(), indexPage.logoImage, globalVars.getDefaultExplicitTimeout());
         log.info("Returning new IndexPage...");
         return new IndexPage();
@@ -50,6 +50,7 @@ public class AccountLogoutPage extends BasePage {
     public boolean validateLogoutContinueBtnIsDisplayed() {
         explicitWait(getDriver(), logoutAccountContinueBtn, globalVars.getDefaultExplicitTimeout());
         log.info("Waiting for element to Displayed..");
+        log.info("Element Displayed as: " + "<" + logoutAccountContinueBtn.toString() + ">");
         return isDisplayed(getDriver(), logoutAccountContinueBtn);
     }
 

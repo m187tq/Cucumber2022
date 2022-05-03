@@ -12,6 +12,9 @@ import java.util.List;
 
 public class AccountPage extends BasePage {
     public static Logger log = LoggerHelper.getLogger(AccountPage.class);
+    AccountEditPage accountEditPage = new AccountEditPage();
+    AccountLogoutPage accountLogoutPage = new AccountLogoutPage();
+
     public AccountPage() throws IOException {
             super();
     }
@@ -51,7 +54,7 @@ public class AccountPage extends BasePage {
 
     public AccountLogoutPage clickOnLogoffBtn() throws IOException {
         waitFor(logoffBtn);
-        log.info("Wait ti click on the element...");
+        log.info("Waiting to click on the element...");
         waitForWebElementAndClick(logoffBtn);
         log.info("return a new AccountLogoutPage...");
         return new AccountLogoutPage();
@@ -93,36 +96,39 @@ public class AccountPage extends BasePage {
 
     public String userProfileInfoMessage() {
         waitFor(userProfileMyAccountTxt);
-        log.info("Getting element text..." + userProfileMyAccountTxt.getText());
+        log.info("Getting element text: " + userProfileMyAccountTxt.getText());
         return userProfileMyAccountTxt.getText();
     }
     public boolean homePageWelcomeMessage(String arg1) throws InterruptedException {
         fluentWait(getDriver(), welcomeBackTxt, globalVars.getDefaultExplicitTimeout());
-        log.info("The element is Displayed as: " + "<" + welcomeBackTxt.getText() + ">");
+        log.info("The element is Displayed as : " + "<" + welcomeBackTxt.getText() + ">");
         return isDisplayed(getDriver(), welcomeBackTxt);
     }
 
     public String accountDashboardMessage() {
-        log.info("Getting element text..." + accountDashboardTxt.getText());
+        log.info("Getting element text: " + accountDashboardTxt.getText());
         return getText(accountDashboardTxt);
     }
 
-    public void clickOnLogoutBtn() {
+    public AccountLogoutPage clickOnLogoutBtn() throws IOException {
         waitFor(logout);
         waitAndClickElement(logout);
-        log.info("Waited and clicked on the element...");
+        log.info("Successfully clicked on the WebElement: " + "<" + logout.toString() + ">");
+        waitFor(accountLogoutPage.accountLogoutTxt);
+        return new AccountLogoutPage();
     }
     public AccountEditPage clickOnEditAccountDetailsLink() throws IOException, InterruptedException {
         waitFor(editAccountDetailsLink);
         waitAndClickElement(editAccountDetailsLink);
-        log.info("Waited and clicked on the element...");
-        log.info("return new AccountEditPage.... ");
+        log.info("Successfully clicked on the WebElement: " + "<" + editAccountDetailsLink.toString() + ">");
+        waitFor(accountEditPage.firstNameBox);
+        log.info("Returning new AccountEdit Page and wait for "+accountEditPage.myaccountInformationHeadingtext);
         return new AccountEditPage();
 
     }
     public String accountProfileSuccessfulUpdateMessage() {
         waitFor(successYourAccountSuccessfullyUpdatedTxt);
-        log.info("Waited and getting element text..." );
+        log.info("Got the element text: " + successYourAccountSuccessfullyUpdatedTxt.getText());
         return successYourAccountSuccessfullyUpdatedTxt.getText();
 
     }

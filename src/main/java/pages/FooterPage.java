@@ -40,6 +40,42 @@ public class FooterPage extends BasePage {
     public WebElement subscribeBtn;
 
 
+    public static Logger getLog() {
+        return log;
+    }
+
+    public List<WebElement> getFooterTxtHearing() {
+        return footerTxtHearing;
+    }
+
+    public WebElement getNavigate() {
+        return navigate;
+    }
+
+    public WebElement getCategories() {
+        return categories;
+    }
+
+    public WebElement getPopularBrands() {
+        return popularBrands;
+    }
+
+    public WebElement getInfo() {
+        return info;
+    }
+
+    public WebElement getSubscribeNewsletter() {
+        return subscribeNewsletter;
+    }
+
+    public WebElement getSubscribeEmailBox() {
+        return subscribeEmailBox;
+    }
+
+    public WebElement getSubscribeBtn() {
+        return subscribeBtn;
+    }
+
     public void  clickOnFooterHearingTextName(String textName) {
         List<WebElement> textNames = footerTxtHearing;
         Iterator<WebElement> itr = textNames.iterator();

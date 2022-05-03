@@ -76,12 +76,12 @@ public class AccountLoginPage extends BasePage {
     }
     public AccountPage clickOnLoginBtn() throws IOException, InterruptedException {
         waitAndClickElement(loginBtn);
-        log.info("Waited and clicked on the element...");
+        log.info("Successfully clicked on the WebElement: " + "<" + loginBtn.toString() + ">");
         waitFor(accountPage.welcomeBackTxt);
         log.info("Returning to new AccountPage.welcomeBackTxt");
         return new AccountPage();
     }
-    public AccountLoginPage clickOnLoginButton() throws InterruptedException, IOException {
+    public AccountLoginPage clickOnLoginButton() throws IOException {
         waitAndClickElement(loginBtn);
         log.info("Waited and clicked on the element...");
         waitFor(errorIncorrectLoginOrPasswordProvidedTxt);
@@ -148,6 +148,7 @@ public class AccountLoginPage extends BasePage {
         AccountCreatePage acp = new AccountCreatePage();
         waitFor(continueRegisterAccountBtn);
         log.info("Waited and clicked on the element...");
+        log.info("Successfully clicked on the WebElement: " + "<" + continueRegisterAccountBtn.toString() + ">");
         continueRegisterAccountBtn.click();
         waitFor(acp.createAccountTxt);
         log.info("clicked and waited for element on returning to AccountSuccessPage...");

@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.datarepo;
+import utils.globalVars;
 
 import java.io.IOException;
 
@@ -57,72 +58,72 @@ public CheckoutPage() throws IOException {
     public WebElement totalPrice;
 
     public boolean isCustomerHeadingTxtDisplayed() {
-        return act.isDisplayed(getDriver(), customerHeadingTxt);
+        return isDisplayed(customerHeadingTxt);
     }
 
     public boolean isItemImageDisplayed() {
-        return  act.isDisplayed(getDriver(),itemImage);
+        return isDisplayed(itemImage);
     }
 
     public void clickOnSignOutBtn() {
-        act.click(getDriver(), signOutBtn);
+        waitForWebElementAndClick(signOutBtn);
 
     }
 
     public boolean isSignOutBtnEnabled() {
-        return act.isEnabled(getDriver(), signOutBtn);
+        return isEnabled(signOutBtn);
 
     }
 
     public void clickOnBillingAddrEditBtn() {
-        actor.fluentWait(getDriver(), billingAddrEditBtn, datarepo.getFifteenSeconds());
-        act.click(getDriver(), billingAddrEditBtn);
+        fluentWait(getDriver(), billingAddrEditBtn, globalVars.explicitWait);
+        waitForWebElementAndClick(billingAddrEditBtn);
 
     }
 
     public void isBillingAddrEditBtnEnabled() {
-        act.isEnabled(getDriver(),billingAddrEditBtn);
+        isEnabled(billingAddrEditBtn);
     }
 
     public void isBillingAddrEditBtnDisplayed() {
-        act.isDisplayed(getDriver(),billingAddrEditBtn);
+        isDisplayed(billingAddrEditBtn);
     }
 
     public boolean isShippingAddrEditBtnDisplayed() {
-        return  act.isDisplayed(getDriver(),ShippingAddressEditBtn);
+        return isDisplayed(ShippingAddressEditBtn);
     }
 
     public boolean isFullCustomerHeadingTxtDisplayed() {
-        return  act.isDisplayed(getDriver(),fullCustomerHeadingTxt);
+        return isDisplayed(fullCustomerHeadingTxt);
 
     }
     public boolean isShippingAddressTxtDisplayed() {
-        return  act.isDisplayed(getDriver(),shippingAddressTxt);
+        return isDisplayed(shippingAddressTxt);
     }
     public boolean isMyBillingAddressSameShippingAddressTxtDisplayed() {
-        return  act.isDisplayed(getDriver(),MyBillingAddressSameShippingAddressTxt);
+        return isDisplayed(MyBillingAddressSameShippingAddressTxt);
     }
     public boolean isShippingMethodTxtDisplayed() {
-        return  act.isDisplayed(getDriver(),shippingMethodTxt);
+        return isDisplayed(shippingMethodTxt);
     }
 
     public void clickOnCustomerContinueBtn() {
-        act.click(getDriver(),customerContinueBtn);
+        waitForWebElementAndClick(customerContinueBtn);
     }
     public boolean isOrderSummaryTxtDisplayed() {
         return  act.isDisplayed(getDriver(),orderSummaryTxt);
 
     }
     public void clickOnEditCartLinkTxt() {
-        act.click(getDriver(), editCartLinkTxt);
+        waitForWebElementAndClick(editCartLinkTxt);
     }
 
     public boolean isEditCartLinkTxtDisplayed() {
-       return  act.isDisplayed(getDriver(),editCartLinkTxt);
+       return isDisplayed(editCartLinkTxt);
     }
 
     public boolean isTotalPriceDisplay() {
-       return act.isDisplayed(getDriver(),totalPrice);
+       return isDisplayed(totalPrice);
     }
 
 

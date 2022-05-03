@@ -32,27 +32,35 @@ public class CheckoutSuccessPage extends BasePage {
     WebElement continueBtn;
 
     public String getOrderHasBeenProcessedHeading() {
+        log.info("Getting element text..." + yourOrderHasBeenProcessedHeadingTxt.getText());
         return getText(yourOrderHasBeenProcessedHeadingTxt);
 
     }
     public String getOrderNumber() {
+        log.info("Getting element text..." + OrderNumberText.getText());
         return getText(OrderNumberText);
 
     }
     public String getViewInvoice() {
+        log.info("Getting element text..." + viewInvoiceText.getText());
         return getText(viewInvoiceText);
     }
     public String getThankYouForShoppingWithUsTxt() {
+        log.info("Getting element text..." + thankYouForShoppingWithUsTxt.getText());
         return thankYouForShoppingWithUsTxt.getText();
     }
     public InvoiceOrderPage clickOnInvoicePageLink() throws IOException {
+        log.info("Waiting to click on the element...");
         waitForWebElementAndClick(invoicePageLink);
         return new InvoiceOrderPage();
     }
     public IndexPage clickOnContinueBtn() throws InterruptedException, IOException {
         waitFor(continueBtn);
+        log.info("Waiting to click on the element...");
         waitForWebElementAndClick(continueBtn);
+        log.info("Successfully clicked on the WebElement: " + "<" + continueBtn.toString() + ">");
         waitFor(indexPage.logoImage);
+        log.info("Clicked and returning a new Index Page");
         return new IndexPage();
 
     }

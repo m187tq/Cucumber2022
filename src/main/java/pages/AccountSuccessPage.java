@@ -9,11 +9,11 @@ import utils.globalVars;
 import java.io.IOException;
 
 public class AccountSuccessPage extends BasePage {
+    AccountPage accountPage = new AccountPage();
     public static Logger log = LoggerHelper.getLogger(AccountSuccessPage.class);
     public AccountSuccessPage() throws IOException {
         super();
     }
-
 
     @FindBy(xpath = "//body[1]/div[1]/div[2]/div[1]/div[2]/div[1]/h2[1]/span[1]")
     public WebElement myAccountText;
@@ -46,8 +46,9 @@ public class AccountSuccessPage extends BasePage {
 
     public AccountPage clickOnContinueAccountSuccessBtn() throws IOException, InterruptedException {
         waitForWebElementAndClick(continueAccountSuccessBtn);
-        log.info("Waiting to click on the element...");
+        log.info("Successfully clicked on the WebElement: " + "<" + continueAccountSuccessBtn.toString() + ">");
         log.info("Clicked and returning new Account Page...");
+        waitFor(accountPage.logoffBtn);
         return new AccountPage();
     }
 

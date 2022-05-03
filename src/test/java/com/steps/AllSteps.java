@@ -311,7 +311,7 @@ public class AllSteps extends BasePage {
 
 
     @When("user clicks on logoff button on Account page")
-    public void userClicksOnLogoffButtonOnAccountPage() {
+    public void userClicksOnLogoffButtonOnAccountPage() throws IOException {
         accountPage.clickOnLogoutBtn();
 
     }

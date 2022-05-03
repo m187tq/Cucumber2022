@@ -9,6 +9,8 @@ import utilities.datarepo;
 import java.io.IOException;
 import java.util.List;
 
+import static utils.globalVars.getDefaultExplicitTimeout;
+
 
 public class IndexPage extends BasePage {
     public static Logger log = LoggerHelper.getLogger(IndexPage.class);
@@ -85,7 +87,7 @@ public class IndexPage extends BasePage {
     }
 
     public String getCurrentPageUrl() throws InterruptedException {
-        fluentWait(getDriver(), logoImage, 10);
+        fluentWait(getDriver(), logoImage, getDefaultExplicitTimeout());
         log.info("The current URL was: " + url );
         return getDriver().getCurrentUrl();
     }

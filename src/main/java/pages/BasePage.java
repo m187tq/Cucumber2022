@@ -105,7 +105,6 @@ public class BasePage extends DriverFactory {
         while (!clicked && attempts < 10) {
             try {
                 this.wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-                // // log.info("Successfully clicked on the WebElement: " + "<" + element.toString() + ">");
                 clicked = true;
             } catch (Exception e) {
                 // // log.info("Unable to wait and click on WebElement, Exception: " + e.getMessage());
@@ -1003,6 +1002,138 @@ public class BasePage extends DriverFactory {
         WebDriverWait wait = new WebDriverWait(BasePage.getDriver(),Duration.ofSeconds(globalVars.getExplicitWait()));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+    public static boolean isElementPresent(WebElement webElement) {
+        try {
+            boolean isPresent = webElement.isDisplayed();
+            return isPresent;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+
+    }
+
+    public static void waitForPageToLoad()
+    {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static void openPage(String url) {
+        System.out.println(url);
+        System.out.println(getDriver());
+        getDriver().get(url);
+    }
+
+    public static boolean verifyTextContains(String actualText, String expText) {
+        if (actualText.toLowerCase().contains(expText.toLowerCase())) {
+            System.out.println("Actual Text From Web Application UI   --> : " + actualText);
+            System.out.println("Expected Text From Web Application UI --> : " + expText);
+            System.out.println("### Verification Contains !!!");
+            return true;
+        } else {
+            System.out.println("Actual Text From Web Application UI   --> : " + actualText);
+            System.out.println("Expected Text From Web Application UI --> : " + expText);
+            System.out.println("### Verification DOES NOT Contains !!!");
+            return false;
+        }
+
+    }
+
+    /**
+     * Checks whether actual string matches with expected string and prints both in log
+     *
+     * @param actualText - actual Text picked up from application under Test
+     * @param expText    - expected Text to be matched with actual text
+     * @return
+     */
+    public static boolean verifyTextMatch(String actualText, String expText) {
+        if (actualText.equals(expText)) {
+            System.out.println("Actual Text From Web Application UI   --> : " + actualText);
+            System.out.println("Expected Text From Web Application UI --> : " + expText);
+            System.out.println("### Verification MATCHED !!!");
+            return true;
+        } else {
+            System.out.println("Actual Text From Web Application UI   --> : " + actualText);
+            System.out.println("Expected Text From Web Application UI --> : " + expText);
+            System.out.println("### Verification DOES NOT MATCH !!!");
+            return false;
+        }
+    }
+
+    /**
+     * getOrVerify actual list contains items of the expected list
+     *
+     * @param actList
+     * @param expList
+     * @return
+     */
+    public static Boolean verifyListContains(java.util.List<String> actList, java.util.List<String> expList) {
+        int expListSize = expList.size();
+        for (int i = 0; i < expListSize; i++) {
+            if (!actList.contains(expList.get(i))) {
+                return false;
+            }
+        }
+        System.out.println("Actual List Contains Expected List !!!");
+        return true;
+    }
+
+    /***
+     * getOrVerify actual list matches expected list
+     * @param actList
+     * @param expList
+     * @return
+     */
+    public static Boolean verifyListMatch(java.util.List<String> actList, java.util.List<String> expList) {
+        boolean found = false;
+        int actListSize = actList.size();
+        int expListSize = expList.size();
+        if (actListSize != expListSize) {
+            return false;
+        }
+
+        for (int i = 0; i < actListSize; i++) {
+            found = false;
+            for (int j = 0; j < expListSize; j++) {
+                if (verifyTextMatch(actList.get(i), expList.get(j))) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (found) {
+            System.out.println("Actual List Matches Expected List !!!");
+            return true;
+        } else {
+            System.out.println("Actual List DOES NOT Match Expected List !!!");
+            return false;
+        }
+    }
+
+    /**
+     * Verifies item is present in the list
+     *
+     * @param actList
+     * @param item
+     * @return boolean result
+     */
+    public static Boolean verifyItemPresentInList(java.util.List<String> actList, String item) {
+        int actListSize = actList.size();
+        for (int i = 0; i < actListSize; i++) {
+            if (!actList.contains(item)) {
+                System.out.println("Item is NOT present in List !!!");
+                return false;
+            }
+        }
+        System.out.println("Item is present in List !!!");
+        return true;
+    }
+
 
 
 }
